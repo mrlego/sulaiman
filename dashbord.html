@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الموظف</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    box-sizing: border-box;
+}
+body {
+    direction: rtl;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    width: 100%; 
+    overflow-x: hidden;
+}
+ 
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 26px;
+        }
+
+        .request {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .request h3 {
+            color: #005f6a;
+            font-size: 22px;
+        }
+
+        .request p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            background-color: #005f6a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .buttons button:hover {
+            background-color: #00464f;
+        }
+
+        .status {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .status.pending {
+            color: orange;
+        }
+
+        .status.accepted {
+            color: green;
+        }
+
+        .status.rejected {
+            color: red;
+        }
+
+        .request-footer {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+@media (max-width: 768px) {
+    form {
+        width: 90%; 
+    }
+
+    canvas {
+        width: 100%; 
+        height: auto; 
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>لوحة تحكم الموظف</h1>
+
+        <div class="request">
+            <h3>طلب رقم 1 - الاتفاقية الرقمية</h3>
+            <p><strong>الاسم الكامل:</strong> محمد عبدالله</p>
+            <p><strong>رقم الهاتف:</strong> 0555555555</p>
+            <p><strong>البريد الإلكتروني:</strong> mohammed@email.com</p>
+            <p><strong>العنوان:</strong> الرياض، المملكة العربية السعودية</p>
+            <p><strong>التوقيع:</strong></p>
+            <img src="./signatures/1733577486.png" id="signature2" width="200" height="100" style="border: 1px solid #ddd;" alt="">
+
+            <p class="status pending">قيد المراجعة</p>
+
+            <div class="buttons">
+                <button onclick="acceptRequest(1)">قبول</button>
+                <button onclick="rejectRequest(1)">رفض</button>
+            </div>
+            
+            <div class="request-footer">
+                <p><strong>التاريخ:</strong> 2024-12-07</p>
+            </div>
+        </div>
+
+        <div class="request">
+            <h3>طلب رقم 2 - الاتفاقية الرقمية</h3>
+            <p><strong>الاسم الكامل:</strong> عائشة فهد</p>
+            <p><strong>رقم الهاتف:</strong> 0555555556</p>
+            <p><strong>البريد الإلكتروني:</strong> aisha@email.com</p>
+            <p><strong>العنوان:</strong> جدة، المملكة العربية السعودية</p>
+            <p><strong>التوقيع:</strong></p>
+             <img src="./signatures/1733577467.png" id="signature2" width="200" height="100" style="border: 1px solid #ddd;" alt="">
+
+            <p class="status accepted">تم القبول</p>
+
+            <div class="request-footer">
+                <p><strong>التاريخ:</strong> 2024-12-06</p>
+            </div>
+        </div>
+
+        <div class="request">
+            <h3>طلب رقم 3 - الاتفاقية الرقمية</h3>
+            <p><strong>الاسم الكامل:</strong> خالد سعيد</p>
+            <p><strong>رقم الهاتف:</strong> 0555555557</p>
+            <p><strong>البريد الإلكتروني:</strong> khaled@email.com</p>
+            <p><strong>العنوان:</strong> مكة، المملكة العربية السعودية</p>
+            <p><strong>التوقيع:</strong></p>
+            <img src="./signatures/1733577486.png" id="signature2" width="200" height="100" style="border: 1px solid #ddd;" alt="">
+
+
+            <p class="status rejected">تم الرفض</p>
+
+            <div class="request-footer">
+                <p><strong>التاريخ:</strong> 2024-12-05</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function acceptRequest(requestId) {
+            document.querySelector(`#signature${requestId}`).nextElementSibling.innerHTML = 'تم القبول';
+            document.querySelector(`#signature${requestId}`).nextElementSibling.className = 'status accepted';
+        }
+
+        function rejectRequest(requestId) {
+            document.querySelector(`#signature${requestId}`).nextElementSibling.innerHTML = 'تم الرفض';
+            document.querySelector(`#signature${requestId}`).nextElementSibling.className = 'status rejected';
+        }
+    </script>
+</body>
+</html>
